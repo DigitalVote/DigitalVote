@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+
+</body>
+</html>  
+<body bgcolor="skyblue">  
+<br>  
+<br>  
+<form  method="post" onsubmit="func()">  
+ 
+<label> Name </label>        
+<input type="text" id="one" name="firstname" size="50"/> <br> <br>  
+<label>
+<label> Voter ID </label>        
+<input type="text" id="two" name="Voter ID" size="50"/> <br> <br>  
+<label>
+Gender :  
+</label><br>  
+<input type="radio" name="gender" value="Male" /> Male <br>  
+<input type="radio" name="gender" value="Female" /> Female <br>  
+<input type="radio" name="gender" value="Other" /> Other  
+<br>  
+<br>  
+<label>  
+Phone :  
+</label>  
+<input type="text" name="country code" id="four" value="+91" size="12"/><br><br>
+
+<label> Party Name </label>        
+<input type="text" name="Part Name" id="five" size="50"/> <br> <br>  
+
+<label>
+<label> Politician Name </label>        
+<input type="text" name="Politician Name" id="six" size="50"/> <br> <br>  
+
+<label>
+<label> Zone Number </label>        
+<input type="text" name="Zone Number" id="seven" size="50"/> <br> <br>  
+
+<label>
+Email:  
+<input type="email" id="email" name="email"/> <br>    
+<br> <br>  
+
+<button type="submit" value="Submit" onclick="sendmail()">Submit</button>
+</form>  
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+ <script>
+ 	 function func() {
+		  event.preventDefault();
+	  }
+ 	function sendmail(){
+        //      var ele = document.getElementsByName('gender');
+              
+        //     for(i = 0; i < ele.length; i++) {
+        //         if(ele[i].checked)
+        //         break;
+        //     }
+        // }
+
+            var name = $('#one').val();
+            var id= $('#two').val();
+            // var gen=ele[i].value;
+            var phone = $('#four').val();
+            var party = $('#five').val();
+            var pol= $('#six').val();
+            var zone = $('#seven').val();
+            var email = $('#email').val();
+
+            // var body = $('#body').val();
+
+            var Body='Name: '+name+'<br>Email: '+email+'<br>phone: '+phone+'<br>Party: '+party+'<br>Politician: '+pol+'<br>Voter Id: '+id+'<br>Zone No: '+zone;
+            console.log(name, phone, email, id);
+
+            Email.send({
+             Host: "smtp.gmail.com",
+                Username: "voteindia123456789@gmail.com",
+                Password: "Jaya@2001",
+                To: 'voteindia123456789@gmail.com',
+                From: "voteindia123456789@gmail.com",
+                Subject: "New registration from "+name,
+                Body: Body
+            }).then(
+                message =>{
+                    //console.log (message);
+                    if(message=='OK'){
+                    alert('Your mail has been send. Thank you for connecting.');
+                    // window.location.reload();
+                    }
+                    else{
+                        console.error (message);
+                        alert('There is error at sending message. ')
+                        // window.location.reload();
+                        
+                    }
+
+                }
+            );
+            // window.location.reload();
+        }
+
+
+
+    
+ </script>
+</body>  
+</html>
